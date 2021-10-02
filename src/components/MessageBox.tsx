@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { EmailIcon } from "@chakra-ui/icons";
 import { Button, Stack, Text, Textarea } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -23,8 +23,8 @@ const MessageBox = () => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "suggestion",
-        message,
+        "form-name": "message",
+        ...{ message },
       }),
     });
 
@@ -37,20 +37,20 @@ const MessageBox = () => {
 
   if (!isOpen)
     return (
-      <Button onClick={() => setOpen(true)} rightIcon={<ChevronDownIcon />}>
-        Send us a Message
+      <Button onClick={() => setOpen(true)} leftIcon={<EmailIcon />}>
+        Leave a Message
       </Button>
     );
 
   return (
     <div>
-      <form data-netlify="true" name="message" method="post" {...{ onSubmit }}>
+      <form data-netlify="true" name="message" method="POST" {...{ onSubmit }}>
         <input type="hidden" name="form-name" value="message" />
 
         <Stack spacing={4}>
           <Stack alignItems="center">
             <Text as="label" fontWeight="medium" textAlign="center">
-              Send us a Message
+              Leave a Message
             </Text>
             <Textarea
               {...register("message")}

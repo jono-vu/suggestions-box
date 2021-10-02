@@ -20,8 +20,8 @@ const SuggestionsBox = () => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "suggestion",
-        bandName,
+        "form-name": "bandName",
+        ...{ bandName },
       }),
     });
 
@@ -33,8 +33,9 @@ const SuggestionsBox = () => {
   });
 
   return (
-    <form data-netlify="true" name="suggestion" method="post" {...{ onSubmit }}>
-      <input type="hidden" name="form-name" value="suggestion" />
+    <form data-netlify="true" name="bandName" method="POST" {...{ onSubmit }}>
+      <input type="hidden" name="form-name" value="bandName" />
+
       <Stack spacing={4}>
         <Stack alignItems="center">
           <Text as="label" fontWeight="medium" textAlign="center">
